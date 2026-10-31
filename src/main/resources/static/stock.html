@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Manager</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Stock Manager</h1>
+        <p>Manage company stocks in your MySQL database</p>
+        <div class="user-badge" id="user-badge">Loading user...</div>
+        <form action="/logout" method="post" style="margin-top: 12px;">
+            <button type="submit" class="secondary">Logout</button>
+        </form>
+    </header>
+
+    <section class="panel form-panel">
+        <h2 id="form-title">Add Stock</h2>
+        <form id="stock-form">
+            <input type="hidden" id="stock-id">
+
+            <div class="grid">
+                <label>
+                    Symbol
+                    <input id="symbol" type="text" maxlength="20" required>
+                </label>
+                <label>
+                    Company
+                    <input id="companyName" type="text" required>
+                </label>
+                <label>
+                    Price
+                    <input id="price" type="number" min="0" step="0.01" required>
+                </label>
+                <label>
+                    Quantity
+                    <input id="quantity" type="number" min="0" step="1" required>
+                </label>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="primary">Save Stock</button>
+                <button type="button" id="cancel-edit" class="secondary hidden">Cancel</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="panel list-panel">
+        <div class="toolbar">
+            <h2>Stocks</h2>
+            <input id="searchInput" type="search" placeholder="Search by symbol or company" aria-label="Search stocks">
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Symbol</th>
+                    <th>Company</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="stock-table-body"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="panel stats-panel">
+        <h2>Stock Statistics</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Total Stocks</span>
+                <strong id="totalStocks">0</strong>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Total Quantity</span>
+                <strong id="totalQuantity">0</strong>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Portfolio Value</span>
+                <strong id="totalValue">$0.00</strong>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Average Price</span>
+                <strong id="averagePrice">$0.00</strong>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Highest Price</span>
+                <strong id="highestPrice">$0.00</strong>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Lowest Price</span>
+                <strong id="lowestPrice">$0.00</strong>
+            </div>
+            <div class="stat-card full-width">
+                <span class="stat-label">Top Stock</span>
+                <strong id="topStock">N/A</strong>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel ai-panel">
+        <h2>AI Portfolio Assistant</h2>
+        <div class="ai-query-row">
+            <textarea id="aiQuestion" rows="4" placeholder="Example: List the first 10 stocks, then show the top 5 highest-price stocks, and tell me how many orders were created this month."></textarea>
+        </div>
+        <div class="actions" style="margin-top: 12px;">
+            <button id="askAiBtn" type="button" class="primary">Ask AI</button>
+        </div>
+        <div id="aiAnswer" class="ai-answer">Ask a question about your portfolio.</div>
+    </section>
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
