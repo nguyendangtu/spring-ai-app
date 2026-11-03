@@ -56,3 +56,25 @@ DB_URL=jdbc:mysql://localhost:3306/stockdb?createDatabaseIfNotExist=true&useSSL=
 DB_USERNAME=root
 DB_PASSWORD=your_password
 ```
+
+## Integrate with Ollama
+### download Ollama from https://ollama.com/download/windows
+### follow instruction at: https://docs.spring.io/spring-ai/reference/api/chat/ollama-chat.html
+### run the following command to start the Ollama server: https://gist.github.com/karthiks/fb89ea8230e6574200c8644d9ac878b4
+```bash
+ollama pull mistral
+ollama pull nomic-embed-text   # optional for embeddings
+ollama serve
+ollama run mistral --port 11434 num_ctx 2048
+ollama stop mistral
+```
+
+## Install Ollama UI locally
+```
+pip install open-webui
+open-webui serve
+```
+
+
+
+
